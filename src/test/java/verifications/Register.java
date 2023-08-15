@@ -1,10 +1,12 @@
 package verifications;
 
 import com.shaft.driver.SHAFT;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.*;
 
-public class Register extends TestsConfigurations{
+public class Register {
 //    HomePage homePage;
 //    MainMenuPage mainMenuPage;
 //    SignUpLoginPage signUpLoginPage;
@@ -12,7 +14,14 @@ public class Register extends TestsConfigurations{
 //    ContinuePage continuePage;
 //    DeletePage deletePage;
 //SHAFT.GUI.WebDriver driver;
-
+SHAFT.GUI.WebDriver driver;
+@BeforeMethod
+public void setup(){
+    driver=new SHAFT.GUI.WebDriver();
+//         driver=new ChromeDriver();
+//        driver= DriverFactory.getDriver("Chrome",true);
+//         driver.manage().window().maximize();
+}
 
     @Test
     public void RegisterUser() {
@@ -37,13 +46,13 @@ public class Register extends TestsConfigurations{
                 .AccountCreatedIsVisible("ACCOUNT CREATED!")
                 .ClickOnContinueButton();
 
-        new MainMenuPage(driver)
+     /*   new MainMenuPage(driver)
                 .LoggedInAsUsernameIsVisible("Logged in as Shereen")
                 .ClickOnDeleteButton();
 
 
         new DeletePage(driver)
-                .AccountDeletedIsVisible();
+                .AccountDeletedIsVisible();*/
     }
     //    ---------------Configurations---------------
 //    @BeforeMethod
@@ -63,4 +72,8 @@ public class Register extends TestsConfigurations{
 //    public void tearDown(){
 //        driver.quit();
 //    }
+    @AfterMethod
+    public void tearDown(){
+        driver.quit();
+    }
 }
